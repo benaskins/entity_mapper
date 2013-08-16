@@ -84,15 +84,14 @@ QuoteRepository.find(quote.id)
 
 Add this line to your application's Gemfile:
 
-    gem 'entity_mapper'
+    gem 'entity_mapper', :github => 'benaskins/entity_mapper'
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+I'll move it to rubygems when the API is stable.
 
-    $ gem install entity_mapper
 
 ## Usage
 
