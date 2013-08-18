@@ -21,6 +21,21 @@ module EntityMapper
       def find(id)
         entity_class.new(map_model_to_entity model_class.find(id))
       end
+
+      protected
+      def map_entity_to_model(entity)
+        attribute_mappings.inject({}) do |map, attribute_mapping|
+          map[attribute_mapping.name] = entity.send(attribute_mapping.target)
+          map
+        end
+      end
+
+      def map_model_to_entity(model)
+        attribute_mappings.inject({:id => model.id}) do |map, attribute_mapping|
+          map[attribute_mapping.target] = model.send(attribute_mapping.name)
+          map
+        end
+      end
     end
   end
 end

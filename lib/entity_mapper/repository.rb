@@ -1,5 +1,6 @@
 require 'entity_mapper/repository/query_methods'
 require 'entity_mapper/repository/callbacks'
+require 'entity_mapper/repository/mapping_dsl'
 
 module EntityMapper
   module Repository
@@ -9,10 +10,13 @@ module EntityMapper
         include Singleton
         extend SingletonDelegate
 
-        class_attribute :entity_class, :model_class
+        class_attribute :attribute_mappings, :entity_class, :model_class
+
+        self.attribute_mappings = []
 
         include QueryMethods
         include Callbacks
+        extend MappingDSL
       end
     end
 
