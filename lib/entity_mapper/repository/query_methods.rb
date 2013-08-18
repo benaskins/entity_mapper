@@ -3,7 +3,11 @@ module EntityMapper
     module QueryMethods
 
       def save(entity)
-        entity.tap { |e| e.persisted? ? update(e) : create(e) }
+        entity.tap do |e| 
+          run_hook :before_save, e
+          e.persisted? ? update(e) : create(e)
+          run_hook :after_save, e
+        end
       end
 
       def update(entity)

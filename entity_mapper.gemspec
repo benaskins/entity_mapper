@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = EntityMapper::VERSION
   spec.authors       = ["Ben Askins"]
   spec.email         = ["ben.askins@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Repository for persisting entities}
+  spec.summary       = %q{Write something here eventually}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "virtus",      ">= 1.0.0.beta0", "<= 2.0"
   spec.add_dependency "activemodel", ">= 4.0.0.rc1", "< 5"
+  spec.add_dependency "hooks"
 end

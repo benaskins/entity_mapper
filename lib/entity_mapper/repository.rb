@@ -1,4 +1,5 @@
 require 'entity_mapper/repository/query_methods'
+require 'entity_mapper/repository/callbacks'
 
 module EntityMapper
   module Repository
@@ -11,6 +12,7 @@ module EntityMapper
         class_attribute :entity_class, :model_class
 
         include QueryMethods
+        include Callbacks
       end
     end
 
