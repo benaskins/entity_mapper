@@ -10,7 +10,7 @@ module EntityMapper
         include Singleton
         extend SingletonDelegate
 
-        class_attribute :attribute_mappings, :entity_class, :model_class
+        class_attribute :attribute_mappings, :entity_class
 
         self.attribute_mappings = []
 
