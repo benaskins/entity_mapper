@@ -15,10 +15,26 @@ Other key differences:
 TODO:
 - [ ] tests!!!
 - [ ] examples
-- [ ] repository mapping DSL to replace map_entity_to_model and map_model_to_entity
+- [x] repository mapping DSL to replace map_entity_to_model and map_model_to_entity
 - [ ] repository hooks
 
-## Entities
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'entity_mapper', :github => 'benaskins/entity_mapper'
+
+And then execute:
+
+    $ bundle
+
+I'll move it to rubygems when the API is stable.
+
+
+## Usage
+
+### Entities
 
 Pretty much just virtus objects with ActiveModel support:
 
@@ -39,7 +55,7 @@ end
 quote = Quote.new(:departs_on => Date.today, :returns_on => Date.today + 7)
 ```
 
-## Repositories
+### Repositories
 
 Maps your entities to activerecord models:
 
@@ -54,22 +70,8 @@ class QuoteRepository
   self.entity_class = Quote
   self.model_class = DataStore::Quote
 
-  protected
-
-  def map_entity_to_model(entity)
-    {
-      :departs_on => entity.departs_on,
-      :returns_on => entity.returns_on
-    }
-  end
-
-  def map_model_to_entity(model)
-    {
-      :id         => model.id,
-      :departs_on => model.departs_on,
-      :returns_on => model.returns_on
-    }
-  end
+  map :departs_on
+  map :returns_on
 end
 
 
@@ -78,24 +80,6 @@ QuoteRepository.save(quote)
 
 QuoteRepository.find(quote.id)
 ```
-
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'entity_mapper', :github => 'benaskins/entity_mapper'
-
-And then execute:
-
-    $ bundle
-
-I'll move it to rubygems when the API is stable.
-
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
