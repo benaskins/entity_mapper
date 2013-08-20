@@ -60,15 +60,14 @@ quote = Quote.new(:departs_on => Date.today, :returns_on => Date.today + 7)
 Maps your entities to activerecord models:
 
 ```ruby
-class DataStore::Quote < ActiveRecord::Base
-  self.table_name = 'quotes'
-end
-
 class QuoteRepository
   include EntityMapper::Repository
 
+  class DataStore < ActiveRecord::Base
+    self.table_name = 'quotes'
+  end
+
   self.entity_class = Quote
-  self.model_class = DataStore::Quote
 
   map :departs_on
   map :returns_on
