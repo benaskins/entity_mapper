@@ -3,19 +3,33 @@ module EntityMapper
     module QueryMethods
 
       def save(entity)
-        entity.tap do |e| 
-          run_hook :before_save, e
-          e.persisted? ? update(e) : create(e)
-          run_hook :after_save, e
+        entity.tap do |e|
+          data_store.transaction do
+            run_hook :before_save, e
+            e.persisted? ? update(e) : create(e)
+            run_hook :after_save, e
+          end
         end
       end
 
       def update(entity)
-        data_store.update entity.id, map_entity_to_model(entity)
+        entity.tap do |e|
+          data_store.transaction do
+            run_hook :before_update
+            data_store.update e.id, map_entity_to_model(e)
+            run_hook :after_update
+          end
+        end
       end
 
       def create(entity)
-        entity.id = data_store.create(map_model_to_entity(entity)).id
+        entity.tap do |e|
+          data_store.transaction do
+            run_hook :before_create
+            e.id = data_store.create(map_model_to_entity(e)).id
+            run_hook :after_create
+          end
+        end
       end
 
       def find(id)
