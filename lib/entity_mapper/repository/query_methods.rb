@@ -30,6 +30,7 @@ module EntityMapper
       end
 
       def perform(query_method, entity)
+        return entity unless entity.valid?
         entity.tap do |e|
           data_store.transaction do
             run_hook "before_#{query_method}", e
