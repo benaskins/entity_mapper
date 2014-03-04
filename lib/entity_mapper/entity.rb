@@ -5,7 +5,7 @@ module EntityMapper
     def self.included(klass)
       klass.class_eval do
         include ActiveModel::Model
-        include Virtus
+        include Virtus.model
         include Virtus::Equalizer.new(inspect)
 
         attribute :id, Integer
