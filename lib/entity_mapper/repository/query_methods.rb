@@ -21,7 +21,9 @@ module EntityMapper
       end
 
       def find(id)
-        entity_class.new(map_model_to_entity data_store.find(id))
+        entity_class.new(map_model_to_entity data_store.find(id)).tap do |e|
+          run_hook "after_find", e
+        end
       end
 
       protected

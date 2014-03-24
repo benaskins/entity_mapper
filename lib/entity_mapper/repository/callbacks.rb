@@ -8,7 +8,7 @@ module EntityMapper
         klass.class_eval do
           include Hooks
 
-          define_hooks :before_save, :after_save, :before_update, :after_update, :before_create, :after_create
+          define_hooks :before_save, :after_save, :before_update, :after_update, :before_create, :after_create, :after_find
         end
       end
 
