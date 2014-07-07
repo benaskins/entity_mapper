@@ -23,7 +23,7 @@ module EntityMapper
 
     module SingletonDelegate
       extend Forwardable
-      def_delegators :instance, :save, :find
+      def_delegators :instance, :save, :find, :map_model_to_entity
     end
 
   end
