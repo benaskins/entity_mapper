@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency "virtus",      ">= 1.0.0.beta0", "<= 2.0"
-  spec.add_dependency "activemodel", "~> 4.0.0"
+  spec.add_dependency "activemodel", "~> 4.1.0"
   spec.add_dependency "hooks"
 end
