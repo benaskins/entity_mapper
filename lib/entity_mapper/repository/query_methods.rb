@@ -26,6 +26,12 @@ module EntityMapper
         end
       end
 
+      def delete(entity)
+        perform(:create, entity) do |entity|
+          data_store.delete(entity.id)
+        end
+      end
+
       protected
       def data_store
         self.class::DataStore
